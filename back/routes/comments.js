@@ -4,7 +4,6 @@ const mysqlDb = require('../mysqlDb')
 const router = express.Router();
 
 router.get('/comments', async (req, res) => {
-    console.log(req.query.news_id)
     if (req.query.news_id) {
         const [resources] = await mysqlDb.getConnection().query(
             'SELECT id, news_id, author, comment FROM comments WHERE news_id = ?',
@@ -25,8 +24,6 @@ router.post('/comments', async (req, res) => {
         author: req.body.author,
         comment: req.body.comment,
     };
-
-    console.log(body)
 
     const newResources = await mysqlDb.getConnection().query(
         'INSERT INTO comments (news_id, author, comment) values (?, ?, ?)',

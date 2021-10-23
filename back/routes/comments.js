@@ -6,49 +6,37 @@ const router = express.Router();
 const upload = require('./routesConfig');
 
 router.get('/comments', async (req, res) => {
-    const [resources] = await mysqlDb.getConnection().query(
-        'SELECT id, news_id, author, comment FROM comments');
-    res.send(resources);
-    return
+    console.log(req.query.news_id)
+    if (req.query.news_id) {
+        const [resources] = await mysqlDb.getConnection().query(
+            'SELECT id, news_id, author, comment FROM comments WHERE news_id = ?',
+            [req.query.news_id]);
+        res.send(resources);
+        return
+    } else {
+        const [resources] = await mysqlDb.getConnection().query(
+            'SELECT id, news_id, author, comment FROM comments');
+        res.send(resources);
+        return
+    }
 });
-
-router.get('/comments/:id', async (req, res) => {
-    const [resources] = await mysqlDb.getConnection().query(
-        `SELECT * FROM comments where id = ?`,
-        [req.params.id]);
-    res.send(resources[0]);
-});
-
 
 router.post('/comments', async (req, res) => {
     const body = {
-        name: req.body.name,
-        description: req.body.description,
+        news_id: req.body.news_id,
+        author: req.body.author,
+        comment: req.body.comment,
     };
 
+    console.log(body)
+
     const newResources = await mysqlDb.getConnection().query(
-        'INSERT INTO comments (name, description) values (?, ?)',
-        [body.name, body.description]);
+        'INSERT INTO comments (news_id, author, comment) values (?, ?, ?)',
+        [body.news_id, body.author, body.comment]);
 
     res.send({
         ...body,
         id: newResources.insertId
-    });
-    return
-});
-
-router.put('/comments/:id', async (req, res) => {
-    const body = {
-        name: req.body.name,
-        description: req.body.description,
-    };
-
-    const updateResources = await mysqlDb.getConnection().query(
-        'UPDATE comments SET ? WHERE id = ?',
-        [{...body}, req.params.id]);
-
-    res.send({
-        ...body
     });
     return
 });

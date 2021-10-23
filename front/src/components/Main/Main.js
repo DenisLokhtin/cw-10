@@ -17,7 +17,6 @@ const Main = (props) => {
     };
 
     const  printNews = () => {
-        console.log(news)
         if (news) {
             return news.map(news => {
                 return (

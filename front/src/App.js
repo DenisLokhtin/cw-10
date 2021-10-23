@@ -1,7 +1,7 @@
 import {Route, Switch} from "react-router-dom";
 import Main from "./components/Main/Main";
 import AddNews from "./components/AddNews/AddNews";
-import News from "./components/news/News";
+import News from "./components/News/News";
 import React from "react";
 import './App.css'
 

@@ -1,0 +1,14 @@
+.comments-card {
+    border: 2px solid black;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 5px;
+}
+
+.delete {
+    color: #040083;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+}

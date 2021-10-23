@@ -5,7 +5,6 @@ import './NewsCard.css';
 const NewsCard = (props) => {
 
     const imgSrc = () => {
-        console.log(props)
         if (props.file) {
             return 'http://localhost:8002/public/uploads/' + props.file;
         } else {

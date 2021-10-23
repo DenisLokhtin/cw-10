@@ -1,0 +1,32 @@
+.inputs {
+   display: flex;
+    flex-direction: column;
+}
+
+.inputs input {
+    width: 400px;
+    margin: 30px 0;
+    font-size: 16px;
+}
+
+.inputs textarea {
+    width: 400px;
+    margin: 30px 0;
+    font-size: 16px;
+}
+
+.inputs button {
+    height: 30px;
+    cursor: pointer;
+}
+
+.nav-add {
+        display: flex;
+    justify-content: space-between;
+}
+
+.nav-add span {
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+}

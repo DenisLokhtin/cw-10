@@ -8,7 +8,7 @@ const upload = require('./routes/routesConfig')
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
 app.use('/', comments);
 app.use('/', news);
 app.use(upload.array());

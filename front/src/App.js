@@ -7,9 +7,9 @@ import './App.css'
 
 const App = () => (
 <div>
-    <p className="header">
+    <div className="header">
         <h1>NEWS</h1>
-    </p>
+    </div>
    <div className="container">
        <div className="container-inner">
            <Switch>

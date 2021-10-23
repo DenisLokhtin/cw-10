@@ -1,17 +1,26 @@
 import {Route, Switch} from "react-router-dom";
-import Layout from "./components/UI/Layout/Layout";
-import Products from "./containers/Products/Products";
-import Product from "./containers/Product/Product";
-import NewProduct from "./containers/NewProduct/NewProduct";
+import Main from "./components/Main/Main";
+import AddNews from "./components/AddNews/AddNews";
+import News from "./components/news/News";
+import React from "react";
+import './App.css'
 
 const App = () => (
-  <Layout>
-    <Switch>
-      <Route path="/" exact component={Products}/>
-      <Route path="/products/new" component={NewProduct}/>
-      <Route path="/products/:id" component={Product}/>
-    </Switch>
-  </Layout>
+<div>
+    <p className="header">
+        <h1>NEWS</h1>
+    </p>
+   <div className="container">
+       <div className="container-inner">
+           <Switch>
+               <Route path="/" exact component={Main}/>
+               <Route path="/news" exact component={Main}/>
+               <Route path="/news/new" component={AddNews}/>
+               <Route path="/news/:id" component={News}/>
+           </Switch>
+       </div>
+   </div>
+</div>
 );
 
 export default App;

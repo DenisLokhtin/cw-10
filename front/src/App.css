@@ -1,0 +1,19 @@
+* {
+    font-family: sans-serif;
+}
+
+.container-inner {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 1300px;
+    padding: 10px 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    margin-left: 15%;
+}

@@ -3,29 +3,31 @@ const mysqlDb = require('../mysqlDb')
 
 const router = express.Router();
 
-router.get('/categories', async (req, res) => {
+const upload = require('./routesConfig');
+
+router.get('/comments', async (req, res) => {
     const [resources] = await mysqlDb.getConnection().query(
-        'SELECT id, name FROM categories');
+        'SELECT id, news_id, author, comment FROM comments');
     res.send(resources);
     return
 });
 
-router.get('/categories/:id', async (req, res) => {
+router.get('/comments/:id', async (req, res) => {
     const [resources] = await mysqlDb.getConnection().query(
-        `SELECT * FROM categories where id = ?`,
+        `SELECT * FROM comments where id = ?`,
         [req.params.id]);
     res.send(resources[0]);
 });
 
 
-router.post('/categories', async (req, res) => {
+router.post('/comments', async (req, res) => {
     const body = {
         name: req.body.name,
         description: req.body.description,
     };
 
     const newResources = await mysqlDb.getConnection().query(
-        'INSERT INTO categories (name, description) values (?, ?)',
+        'INSERT INTO comments (name, description) values (?, ?)',
         [body.name, body.description]);
 
     res.send({
@@ -35,14 +37,14 @@ router.post('/categories', async (req, res) => {
     return
 });
 
-router.put('/categories/:id', async (req, res) => {
+router.put('/comments/:id', async (req, res) => {
     const body = {
         name: req.body.name,
         description: req.body.description,
     };
 
     const updateResources = await mysqlDb.getConnection().query(
-        'UPDATE categories SET ? WHERE id = ?',
+        'UPDATE comments SET ? WHERE id = ?',
         [{...body}, req.params.id]);
 
     res.send({
@@ -51,10 +53,10 @@ router.put('/categories/:id', async (req, res) => {
     return
 });
 
-router.delete('/categories/:id', async (req, res) => {
+router.delete('/comments/:id', async (req, res) => {
     try {
         const [resources] = await mysqlDb.getConnection().query(
-            `DELETE FROM categories where id = ?`,
+            `DELETE FROM comments where id = ?`,
             [req.params.id]);
         res.status(204);
     } catch (e) {

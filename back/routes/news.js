@@ -43,7 +43,8 @@ router.delete('/news/:id', async (req, res) => {
         const [resources] = await mysqlDb.getConnection().query(
             `DELETE FROM news where id = ?`,
             [req.params.id]);
-        res.status(204);
+        res.status(204).send('ok');
+        return
     } catch (e) {
         res.status(400).send({"message": e.sqlMessage});
         return
